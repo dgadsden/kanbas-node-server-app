@@ -8,14 +8,13 @@ import "dotenv/config";
 import Hello from "./hello.js";
 
 
-
-
-const app = express();
+const app = express()
 app.use(cors());
 app.use(express.json());
-ModuleRoutes(app);
 CourseRoutes(app);
-Lab5(app);
-Hello(app);
+ModuleRoutes(app);
+Hello(app)
+Lab5(app)
+app.use(cors());
 app.listen(process.env.PORT || 4000);
 
