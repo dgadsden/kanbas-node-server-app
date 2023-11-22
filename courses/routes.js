@@ -3,7 +3,7 @@ function CourseRoutes(app) {
     app.get("/api/courses/:id", (req, res) => {
         const { id } = req.params;
         const course = Database.courses
-            .find((c) => c._id.$oid === id);
+            .find((c) => c._id === id);
         if (!course) {
             res.status(404).send("Course not found");
             return;
