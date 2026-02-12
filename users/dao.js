@@ -1,5 +1,5 @@
 import model from "./model.js";
-
+import userSchema from "./schema.js";
 export const createUser = (user) => model.create(user);
 export const findAllUsers = () => model.find();
 export const findUserById = (userId) => model.findById(userId);

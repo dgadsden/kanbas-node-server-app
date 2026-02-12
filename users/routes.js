@@ -57,6 +57,43 @@ function UserRoutes(app) {
         res.json(req.session['currentUser']);
     };
 
+
+app.post('/api/profile/watchlist/add', async (req, res) => {
+  const { userId, mediaItem } = req.body;
+
+  const result = await dao.addToWatchlist(userId, mediaItem);
+
+  if (result.success) {
+    res.status(200).send(result.message);
+  } else {
+    res.status(500).send(result.message);
+  }
+});
+
+app.post('/api/profile/watchlist/remove', async (req, res) => {
+  const { userId, mediaId } = req.body;
+
+  const result = await dao.removeFromWatchlist(userId, mediaId);
+
+  if (result.success) {
+    res.status(200).send(result.message);
+  } else {
+    res.status(500).send(result.message);
+  }
+});
+
+app.get('/api/profile/watchlist/:userId', async (req, res) => {
+  const userId = req.params.userId;
+
+  const result = await dao.getWatchlist(userId);
+
+  if (result.success) {
+    res.status(200).json(result.watchlist);
+  } else {
+    res.status(500).send(result.message);
+  }
+});
+
     app.post("/api/users", createUser);
     app.get("/api/users", findAllUsers);
     app.get("/api/users/:userId", findUserById);

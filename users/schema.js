@@ -11,6 +11,12 @@ const userSchema = new mongoose.Schema({
         enum: ["STUDENT", "FACULTY", "ADMIN", "USER"],
         default: "USER"
     },
+    watchlist: [
+        {
+            media_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Media' },
+            // Add other fields related to the media item if needed
+        }
+    ]
 },
     { collection: "users" });
 export default userSchema
